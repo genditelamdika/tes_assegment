@@ -1,4 +1,4 @@
-module tour
+module indocattes
 
 go 1.19
 

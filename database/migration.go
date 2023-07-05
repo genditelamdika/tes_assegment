@@ -2,16 +2,13 @@ package database
 
 import (
 	"fmt"
-	"tour/models"
-	"tour/pkg/mysql"
+	"indocattes/models"
+	"indocattes/pkg/mysql"
 )
 
 func RunMigration() {
 	err := mysql.DB.AutoMigrate(
 		&models.User{},
-		&models.Country{},
-		&models.Trip{},
-		&models.Transaction{},
 	)
 
 	if err != nil {

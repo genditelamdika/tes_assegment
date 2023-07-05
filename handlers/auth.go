@@ -1,16 +1,16 @@
 package handlers
 
 import (
+	authdto "indocattes/dto/auth"
+	dto "indocattes/dto/result"
 	"log"
 	"net/http"
 	"time"
-	authdto "tour/dto/auth"
-	dto "tour/dto/result"
 
-	"tour/models"
-	"tour/pkg/bcrypt"
-	jwtToken "tour/pkg/jwt"
-	"tour/repositories"
+	"indocattes/models"
+	"indocattes/pkg/bcrypt"
+	jwtToken "indocattes/pkg/jwt"
+	"indocattes/repositories"
 
 	"github.com/go-playground/validator/v10"
 	"github.com/golang-jwt/jwt/v4"
@@ -58,7 +58,7 @@ func (h *handlerAuth) Register(c echo.Context) error {
 	}
 
 	claims := jwt.MapClaims{}
-	claims["id"] = user.ID
+	claims["id"] = data.ID
 	claims["exp"] = time.Now().Add(time.Hour * 2).Unix() // 2 hours expired
 
 	token, errGenerateToken := jwtToken.GenerateToken(&claims)
@@ -71,11 +71,11 @@ func (h *handlerAuth) Register(c echo.Context) error {
 		Email: user.Email,
 		Token: token,
 	}
-	responseMap := make(map[string]interface{})
-	responseMap["registerResponse"] = registerResponse
-	responseMap["data"] = data
+	// responseMap := make(map[string]interface{})
+	// responseMap["registerResponse"] = registerResponse
+	// responseMap["data"] = data
 
-	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: responseMap})
+	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: registerResponse})
 }
 
 func (h *handlerAuth) Login(c echo.Context) error {

@@ -1,10 +1,10 @@
 package middleware
 
 import (
+	dto "indocattes/dto/result"
+	jwtToken "indocattes/pkg/jwt"
 	"net/http"
 	"strings"
-	dto "tour/dto/result"
-	jwtToken "tour/pkg/jwt"
 
 	"github.com/labstack/echo/v4"
 )
@@ -24,6 +24,8 @@ func Auth(next echo.HandlerFunc) echo.HandlerFunc {
 		if token == "" {
 			return c.JSON(http.StatusUnauthorized, dto.ErrorResult{Code: http.StatusBadRequest, Message: "unauthorized"})
 		}
+
+		// bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODU0MzQyMjMsImlkIjo3fQ.VLwkI6uJx7O4tYeATusRgtqYJ7W31C0Ls2cldBJywOc
 
 		token = strings.Split(token, " ")[1] //Baris ini membagi string token menggunakan spasi sebagai delimiter dan mendapatkan bagian kedua dari string, yaitu token yang sebenarnya.
 		claims, err := jwtToken.DecodeToken(token)

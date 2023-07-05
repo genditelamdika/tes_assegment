@@ -1,12 +1,12 @@
 package handlers
 
 import (
+	dto "indocattes/dto/result"
+	usersdto "indocattes/dto/user"
+	"indocattes/models"
+	"indocattes/repositories"
 	"net/http"
 	"strconv"
-	dto "tour/dto/result"
-	usersdto "tour/dto/user"
-	"tour/models"
-	"tour/repositories"
 
 	// "github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"

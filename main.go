@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"tour/database"
-	"tour/pkg/mysql"
-	"tour/routes"
+	"indocattes/database"
+	"indocattes/pkg/mysql"
+	"indocattes/routes"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"

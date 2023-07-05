@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"tour/models"
+	"indocattes/models"
 
 	"gorm.io/gorm"
 )

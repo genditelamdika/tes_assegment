@@ -1,9 +1,9 @@
 package routes
 
 import (
-	"tour/handlers"
-	"tour/pkg/mysql"
-	"tour/repositories"
+	"indocattes/handlers"
+	"indocattes/pkg/mysql"
+	"indocattes/repositories"
 
 	"github.com/labstack/echo/v4"
 )

@@ -1,11 +1,7 @@
 package models
 
 type Transaction struct {
-	ID         int    `json:"id"`
-	Counterqty int    `json:"counterqty" form:"counterqty"`
-	Total      int    `json:"total" form:"total"`
-	Status     string `json:"status" form:"status" gorm:"type: varchar(255)"`
-	Attachment string `json:"attachment" form:"attachment" gorm:"type: varchar(255)"`
-	TripID     int    `json:"tripid" form:"tripid"`
-	Trip       Trip   `json:"trip" `
+	ID     int    `json:"name" form:"name" gorm:"varchar(255)"`
+	Date   string `json:"date" form:"date" gorm:"varchar(255)"`
+	Status string `json:"status" form:"status" gorm:"varchar(255)"`
 }
