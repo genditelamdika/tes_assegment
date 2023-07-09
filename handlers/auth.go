@@ -46,10 +46,6 @@ func (h *handlerAuth) Register(c echo.Context) error {
 		Fullname: request.Fullname,
 		Email:    request.Email,
 		Password: password,
-		Phone:    request.Phone,
-		Address:  request.Address,
-		// Gender:   request.Gender,
-		// Subcribe: request.Subcribe,
 	}
 
 	data, err := h.AuthRepository.Register(user)

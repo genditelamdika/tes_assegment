@@ -62,8 +62,5 @@ func convertResponse(u models.User) usersdto.UserResponse {
 		Fullname: u.Fullname,
 		Email:    u.Email,
 		Password: u.Password,
-		Phone:    u.Phone,
-		Address:  u.Address,
-		// Gender:   u.Gender,
 	}
 }
