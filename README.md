@@ -27,7 +27,7 @@
 <p>image</p>
 <p>categoryid</p>
 
-<h1>#untuk Pembelian 
+<h1>#untuk Pembelian</h1> 
 <p>authorizarion User Mengunakan token</p>
 <p>http://localhost:5000/api/v1/cart</p>
 <p>{
