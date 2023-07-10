@@ -66,44 +66,6 @@ func (h *handlerProduct) CreateProduct(c echo.Context) error {
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
 	}
-	// // Mendapatkan informasi kode diskon dari request
-	// discountcode := c.FormValue("discountcode")
-
-	// // Menginisialisasi variabel discountpercentage dengan nilai 0
-	// discountpercentage := 0
-
-	// // Cek validitas kode diskon
-	// isValidDiscount := false
-
-	// // Cek kode diskon untuk menentukan persentase diskon
-	// switch discountcode {
-	// case "IC003":
-	// 	// Kode diskon IC003, diskon 10% untuk semua barang
-	// 	discountpercentage = 90
-	// 	isValidDiscount = true
-	// case "IC042":
-	// 	// Kode diskon IC042, diskon 5% untuk barang dengan kategori elektronik
-	// 	if categoryid == 2 {
-	// 		discountpercentage = 95
-	// 		// isValidDiscount = true
-	// 	}
-	// case "IC015":
-	// 	// Kode diskon IC015, diskon 10% untuk semua barang pada hari Sabtu dan Minggu
-	// 	if time.Now().Weekday() == time.Saturday || time.Now().Weekday() == time.Sunday {
-	// 		discountpercentage = 90
-	// 		isValidDiscount = true
-	// 	}
-	// default:
-	// 	// Tidak ada kode diskon yang diinputkan, tetap berjalan tanpa diskon
-	// 	isValidDiscount = true
-	// }
-	// // Jika kode diskon tidak valid, berikan respon error
-	// if !isValidDiscount {
-	// 	return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: "Invalid discount code"})
-	// }
-
-	// // Menghitung jumlah diskon berdasarkan persentase diskon
-	// discountamount := (float64(discountpercentage) / 100) * request.Price
 
 	product := models.Product{
 		Name:        request.Name,
@@ -111,9 +73,6 @@ func (h *handlerProduct) CreateProduct(c echo.Context) error {
 		Price:       request.Price,
 		Description: request.Description,
 		Image:       request.Image,
-		// Discountcode:       discountcode,
-		// Discountpercentage: discountpercentage,
-		// Discountamount:     discountamount,
 	}
 
 	data, err := h.ProductRepository.CreateProduct(product)
