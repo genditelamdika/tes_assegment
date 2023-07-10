@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"time"
 
 	"github.com/go-playground/validator/v10"
 	"github.com/golang-jwt/jwt/v4"
@@ -113,6 +114,16 @@ func (h *handlerCart) CreateCart(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()})
 	}
 	if cart.Status == "pending" {
+		// Menentukan waktu saat ini
+		currentTime := time.Now()
+		// Menentukan waktu tengah malam
+		midnight := time.Date(currentTime.Year(), currentTime.Month(), currentTime.Day()+1, 0, 0, 0, 0, currentTime.Location())
+
+		// Menghitung durasi waktu hingga tengah malam
+		duration := midnight.Sub(currentTime)
+
+		// Tunggu hingga mencapai waktu tengah malam
+		time.Sleep(duration)
 		h.SendEmail(cart.Status, cart.UserID, cart.ProductID, cart)
 	}
 
@@ -161,6 +172,7 @@ func (h *handlerCart) SendEmail(status string, userID int, ProductID int, cart m
 		 <li>Total payment: Rp.%s</li>
 		  <li>Status : <b>%s</b></li>
 		</ul>
+		<h1>Pembelian Anda ditunda!</h1><p>Silakan kunjungi <a href="https://github.com/genditelamdika/tes_assegment">halaman lain</a> untuk detail lebih lanjut.</p>
 		</body>
 	  </html>`, productName, price, status))
 
@@ -208,6 +220,7 @@ func SendMail(status string, cart models.Cart) {
 		 <li>Total payment: Rp.%s</li>
 		  <li>Status : <b>%s</b></li>
 		</ul>
+		<h1>Pembelian Anda berhasil!</h1><p>Silakan kunjungi <a href=\"https://github.com/genditelamdika/tes_assegment">halaman lain</a> untuk detail lebih lanjut.</p>
 		</body>
 	  </html>`, productName, price, status))
 
